@@ -1,4 +1,4 @@
-package cc.peko.neon.cosmetics.armor;
+package cc.peko.neon.cosmetics.types.armor;
 
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;

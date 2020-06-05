@@ -14,7 +14,7 @@ public class CosmeticHandler {
 
     public static void setup() {
         try {
-            for (Class<?> aClass : ClassUtils.getClassesInPackage(Neon.getInstance(), "cc.peko.neon.cosmetics")) {
+            for (Class<?> aClass : ClassUtils.getClassesInPackage(Neon.getInstance(), "cc.peko.neon.cosmetics.types")) {
                 if(!Cosmetic.class.isAssignableFrom(aClass)) continue;
                 Cosmetic cosmetic = (Cosmetic) aClass.newInstance();
                 cosmetics.add(cosmetic);
