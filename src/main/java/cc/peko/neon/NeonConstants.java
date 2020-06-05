@@ -28,7 +28,7 @@ public class NeonConstants {
 
     @Getter private static int giveDelay;
     @Getter private static int itemSlot;
-    @Getter private static boolean enabled;
+    @Getter private static boolean enabled = false;
     @Getter private static String mongoCollection;
     @Getter private static ItemStack cosmeticItem;
 

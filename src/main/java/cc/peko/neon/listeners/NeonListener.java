@@ -20,7 +20,9 @@ public class NeonListener implements Listener {
         Player player = event.getPlayer();
         System.out.println("[Neon] Enabled: " + NeonConstants.isEnabled());
         if(!NeonConstants.isEnabled()) return;
+        System.out.println("Passed enabled check.");
         Bukkit.getScheduler().runTaskLater(Neon.getInstance(), () -> {
+            System.out.println("We have been called");
             player.getInventory().setItem(NeonConstants.getItemSlot(), NeonConstants.getCosmeticItem());
             player.updateInventory();
         }, NeonConstants.getGiveDelay() * 20);
