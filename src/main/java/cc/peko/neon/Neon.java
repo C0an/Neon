@@ -15,7 +15,6 @@ public class Neon extends JavaPlugin {
         (instance = this).saveDefaultConfig();
         NeonConstants.setup(getConfig());
         Bukkit.getPluginManager().registerEvents(new NeonListener(), this);
-        FrozenCommandHandler.registerAll(this);
     }
 
     @Override

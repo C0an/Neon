@@ -17,7 +17,7 @@ public class NeonConstants {
         mongoCollection = config.getString("mongo.collection");
 
         itemSlot = config.getInt("item.slot");
-        ItemStack itemStack = ItemBuilder.of(
+        cosmeticItem = ItemBuilder.of(
                 Material.valueOf(config.getString("item.material")),
                 config.getInt("item.amount"))
                 .name(ChatColor.translateAlternateColorCodes('&', config.getString("item.name")))
