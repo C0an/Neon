@@ -6,6 +6,7 @@ import lombok.Getter;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import rip.protocol.plib.menu.Button;
 import rip.protocol.plib.menu.Menu;
 
@@ -48,6 +49,12 @@ public class CosmeticMenu extends Menu {
                     @Override
                     public Material getMaterial(Player var1) {
                         return types.getIcon();
+                    }
+
+                    @Override
+                    public void clicked(Player player, int slot, ClickType clickType) {
+                        player.closeInventory();
+                        new CosmeticMenu(types).openMenu(player);
                     }
                 });
             }
