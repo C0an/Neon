@@ -12,7 +12,7 @@ public class CosmeticHandler {
 
     @Getter private static final List<ICosmetic> cosmetics = new ArrayList<>();
 
-    public CosmeticHandler() {
+    public static void setup() {
         try {
             for (Class<?> aClass : ClassUtils.getClassesInPackage(Neon.getInstance(), "cc.peko.neon.cosmetics")) {
                 if(!ICosmetic.class.isAssignableFrom(aClass)) continue;

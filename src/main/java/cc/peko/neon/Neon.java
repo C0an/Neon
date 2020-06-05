@@ -1,10 +1,10 @@
 package cc.peko.neon;
 
+import cc.peko.neon.cosmetics.CosmeticHandler;
 import cc.peko.neon.listeners.NeonListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
-import rip.protocol.plib.command.FrozenCommandHandler;
 
 public class Neon extends JavaPlugin {
 
@@ -14,6 +14,7 @@ public class Neon extends JavaPlugin {
     public void onEnable() {
         (instance = this).saveDefaultConfig();
         NeonConstants.setup(getConfig());
+        CosmeticHandler.setup();
         Bukkit.getPluginManager().registerEvents(new NeonListener(), this);
     }
 
