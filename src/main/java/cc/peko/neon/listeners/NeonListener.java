@@ -21,7 +21,7 @@ public class NeonListener implements Listener {
         System.out.println("[Neon] Enabled: " + NeonConstants.isEnabled());
         if(!NeonConstants.isEnabled()) return;
         Bukkit.getScheduler().runTaskLater(Neon.getInstance(), () -> {
-            player.getInventory().setItem(NeonConstants.getItemSlot(), NeonConstants.getCosmeticItem();
+            player.getInventory().setItem(NeonConstants.getItemSlot(), NeonConstants.getCosmeticItem());
             player.updateInventory();
         }, NeonConstants.getGiveDelay() * 20);
     }
