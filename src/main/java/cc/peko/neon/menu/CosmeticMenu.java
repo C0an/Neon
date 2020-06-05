@@ -47,7 +47,7 @@ public class CosmeticMenu extends Menu {
 
                     @Override
                     public Material getMaterial(Player var1) {
-                        return cosmeticType.getIcon();
+                        return types.getIcon();
                     }
                 });
             }
