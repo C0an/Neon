@@ -13,7 +13,7 @@ public class NeonConstants {
 
     public static void setup(FileConfiguration config) {
         giveDelay = config.getInt("settings.giveDelay");
-        enabled = config.getInt("settings.giveDelay") == -1;
+        enabled = config.getInt("settings.giveDelay") != -1;
         mongoCollection = config.getString("mongo.collection");
 
         itemSlot = config.getInt("item.slot");
