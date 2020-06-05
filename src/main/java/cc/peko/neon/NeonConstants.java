@@ -26,7 +26,6 @@ public class NeonConstants {
                 .build();
     }
 
-
     @Getter private static int giveDelay;
     @Getter private static int itemSlot;
     @Getter private static boolean enabled;
