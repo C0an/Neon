@@ -18,7 +18,7 @@ public enum CosmeticType {
     private final String displayName;
     private final Material icon;
 
-    public List<ICosmetic> getCosmetics() {
+    public List<Cosmetic> getCosmetics() {
         return CosmeticHandler.getCosmetics().stream().filter(iCosmetic -> iCosmetic.getCosmeticType() == this).collect(Collectors.toList());
     }
 

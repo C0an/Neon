@@ -1,6 +1,6 @@
 package cc.peko.neon.menu.button;
 
-import cc.peko.neon.cosmetics.ICosmetic;
+import cc.peko.neon.cosmetics.Cosmetic;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -11,7 +11,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CosmeticButton extends Button {
 
-    private ICosmetic cosmetic;
+    private final Cosmetic cosmetic;
 
     @Override
     public String getName(Player player) {

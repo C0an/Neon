@@ -1,7 +1,6 @@
 package cc.peko.neon.menu;
 
 import cc.peko.neon.cosmetics.CosmeticType;
-import cc.peko.neon.cosmetics.ICosmetic;
 import cc.peko.neon.menu.button.CosmeticButton;
 import lombok.Getter;
 import org.bukkit.ChatColor;
