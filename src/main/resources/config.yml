@@ -1,0 +1,14 @@
+settings:
+  giveDelay: 1
+
+mongo:
+  collection: "Cosmetics"
+
+item:
+  name: "&bCosmetics"
+  material: BEACON
+  data: 0
+  slot: 4
+  amount: 1
+  description:
+    - "&7Right click to select a cosmetic!"

@@ -1,0 +1,5 @@
+name: Neon
+version: ${git.commit.id.abbrev}
+author: Peko Development Team
+main: cc.peko.neon.Neon
+depend: [Oxygen]
