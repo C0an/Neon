@@ -4,7 +4,6 @@ import cc.peko.neon.cosmetics.Cosmetic;
 import lombok.AllArgsConstructor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
 import rip.protocol.plib.menu.Button;
 
 import java.util.List;
@@ -26,11 +25,16 @@ public class CosmeticButton extends Button {
 
     @Override
     public Material getMaterial(Player player) {
-        return Material.DIRT;
+        return cosmetic.getIcon().getType();
     }
 
     @Override
-    public ItemStack getButtonItem(Player player) {
-        return cosmetic.getIcon();
+    public byte getDamageValue(Player player) {
+        return (byte) cosmetic.getIcon().getDurability();
+    }
+
+    @Override
+    public int getAmount(Player player) {
+        return cosmetic.getIcon().getAmount();
     }
 }
