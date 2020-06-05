@@ -10,13 +10,13 @@ import java.util.List;
 
 public class CosmeticHandler {
 
-    @Getter private static final List<ICosmetic> cosmetics = new ArrayList<>();
+    @Getter private static final List<Cosmetic> cosmetics = new ArrayList<>();
 
     public static void setup() {
         try {
             for (Class<?> aClass : ClassUtils.getClassesInPackage(Neon.getInstance(), "cc.peko.neon.cosmetics")) {
-                if(!ICosmetic.class.isAssignableFrom(aClass)) continue;
-                ICosmetic cosmetic = (ICosmetic) aClass.newInstance();
+                if(!Cosmetic.class.isAssignableFrom(aClass)) continue;
+                Cosmetic cosmetic = (Cosmetic) aClass.newInstance();
                 cosmetics.add(cosmetic);
                 Bukkit.getPluginManager().registerEvents(cosmetic, Neon.getInstance());
             }

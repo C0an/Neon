@@ -1,7 +1,7 @@
 package cc.peko.neon.cosmetics.armor;
 
+import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
-import cc.peko.neon.cosmetics.ICosmetic;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -9,7 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Arrays;
 import java.util.List;
 
-public class RainbowArmorCosmetic implements ICosmetic {
+public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public String getName() {
