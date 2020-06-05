@@ -2,10 +2,13 @@ package cc.peko.neon.cosmetics.types.armor;
 
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
+import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import rip.protocol.plib.util.ItemBuilder;
 
+import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -38,7 +41,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(Material.LEATHER_CHESTPLATE);
+        return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(Color.RED).name(getDisplayName()).setLore(getDescription()).build();
     }
 
     @Override
