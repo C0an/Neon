@@ -3,9 +3,12 @@ package cc.peko.neon.cosmetics.types.armor;
 import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
+import net.minecraft.server.v1_7_R4.PacketPlayOutEntityEquipment;
 import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
@@ -98,10 +101,23 @@ public class RainbowArmorCosmetic extends Cosmetic {
     @Override
     public void tick(Player player) {
         Color color = getColor();
-        player.getInventory().setHelmet(getColorArmor(Material.LEATHER_HELMET, color));
-        player.getInventory().setChestplate(getColorArmor(Material.LEATHER_CHESTPLATE, color));
-        player.getInventory().setLeggings(getColorArmor(Material.LEATHER_LEGGINGS, color));
-        player.getInventory().setBoots(getColorArmor(Material.LEATHER_BOOTS, color));
+
+        ItemStack helmet = getColorArmor(Material.LEATHER_HELMET, color);
+        ItemStack chestplate = getColorArmor(Material.LEATHER_CHESTPLATE, color);
+        ItemStack leggings = getColorArmor(Material.LEATHER_LEGGINGS, color);
+        ItemStack boots = getColorArmor(Material.LEATHER_BOOTS, color);
+
+        player.getInventory().setHelmet(helmet);
+        player.getInventory().setChestplate(chestplate);
+        player.getInventory().setLeggings(leggings);
+        player.getInventory().setBoots(boots);
+
+//        CraftPlayer craftPlayer = (CraftPlayer)player;
+//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 4, CraftItemStack.asNMSCopy(helmet)));
+//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 3, CraftItemStack.asNMSCopy(chestplate)));
+//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 2, CraftItemStack.asNMSCopy(leggings)));
+//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 1, CraftItemStack.asNMSCopy(boots)));
+        player.updateInventory();
     }
 
     @Override
