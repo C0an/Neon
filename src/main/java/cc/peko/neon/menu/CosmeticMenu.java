@@ -24,12 +24,13 @@ public class CosmeticMenu extends Menu {
     public CosmeticMenu(CosmeticType cosmeticType) {
         super(ChatColor.BLUE + "Cosmetics - " + cosmeticType.getDisplayName());
         this.cosmeticType = cosmeticType;
+        setAutoUpdate(true);
     }
 
     @Override
     public Map<Integer, Button> getButtons(Player var1) {
         Map<Integer, Button> buttons = new HashMap<>();
-        AtomicInteger itemPosition = new AtomicInteger(1);
+        AtomicInteger itemPosition = new AtomicInteger(0);
 
         if(getCosmeticType() == null) {
             for (CosmeticType types : CosmeticType.values()) {

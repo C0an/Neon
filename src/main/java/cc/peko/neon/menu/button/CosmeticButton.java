@@ -1,9 +1,14 @@
 package cc.peko.neon.menu.button;
 
+import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
+import cc.peko.neon.cosmetics.player.CosmeticPlayer;
 import lombok.AllArgsConstructor;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import rip.protocol.plib.menu.Button;
 
@@ -31,6 +36,24 @@ public class CosmeticButton extends Button {
 
     @Override
     public ItemStack getButtonItem(Player player) {
-        return cosmetic.getIcon();
+        CosmeticPlayer cosmeticPlayer = Neon.getInstance().getCosmeticHandler().getPlayer(player);
+        ItemStack itemStack = cosmetic.getIcon().clone();
+
+        if(cosmeticPlayer.isSelected(cosmetic)) itemStack.addEnchantment(Enchantment.DURABILITY, 1);
+
+        return itemStack;
+    }
+
+    @Override
+    public void clicked(Player player, int slot, ClickType clickType) {
+        CosmeticPlayer cosmeticPlayer = Neon.getInstance().getCosmeticHandler().getPlayer(player);
+
+        if(!player.hasPermission(cosmetic.getPermission())) {
+            player.sendMessage(ChatColor.RED + "You do not have permission to this cosmetic.");
+            return;
+        }
+
+        if(cosmeticPlayer.isSelected(cosmetic)) cosmetic.remove(player);
+        else cosmeticPlayer.selectCosmetic(cosmetic);
     }
 }

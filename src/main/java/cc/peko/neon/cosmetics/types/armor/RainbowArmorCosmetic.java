@@ -46,9 +46,26 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public void apply(Player player) {
-
+        player.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET));
+        player.getInventory().setChestplate(new ItemStack(Material.LEATHER_CHESTPLATE));
+        player.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
+        player.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS));
+        player.updateInventory();
     }
 
+    @Override
+    public void tick(Player player) {
+        if(player.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) player.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
+        else player.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET));
+        player.updateInventory();
+    }
+
+    @Override
+    public void remove(Player player) {
+        player.getInventory().setArmorContents(new ItemStack[0]);
+        player.updateInventory();
+        unselectCosmetic(player);
+    }
 
 
 }

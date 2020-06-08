@@ -9,12 +9,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Neon extends JavaPlugin {
 
     @Getter private static Neon instance;
+    @Getter private CosmeticHandler cosmeticHandler;
 
     @Override
     public void onEnable() {
         (instance = this).saveDefaultConfig();
         NeonConstants.setup(getConfig());
-        CosmeticHandler.setup();
+        (cosmeticHandler = new CosmeticHandler()).setup();
         Bukkit.getPluginManager().registerEvents(new NeonListener(), this);
     }
 

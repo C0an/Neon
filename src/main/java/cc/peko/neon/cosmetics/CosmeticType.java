@@ -1,5 +1,6 @@
 package cc.peko.neon.cosmetics;
 
+import cc.peko.neon.Neon;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import org.bukkit.Material;
@@ -13,13 +14,13 @@ public enum CosmeticType {
     ARMOR("Armor", Material.LEATHER_CHESTPLATE),
     PETS("Pets", Material.BONE),
     GADGET("Gadgets", Material.BEACON),
-    OTHER("Other", Material.IRON_AXE);
+    OTHER("Particles", Material.BLAZE_POWDER);
 
     private final String displayName;
     private final Material icon;
 
     public List<Cosmetic> getCosmetics() {
-        return CosmeticHandler.getCosmetics().stream().filter(iCosmetic -> iCosmetic.getCosmeticType() == this).collect(Collectors.toList());
+        return Neon.getInstance().getCosmeticHandler().getCosmetics().stream().filter(iCosmetic -> iCosmetic.getCosmeticType() == this).collect(Collectors.toList());
     }
 
 }
