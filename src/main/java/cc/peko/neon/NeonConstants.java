@@ -24,6 +24,10 @@ public class NeonConstants {
                 .data((short) config.getInt("item.data"))
                 .setLore(config.getStringList("item.description").stream().map(s -> ChatColor.translateAlternateColorCodes('&', s)).collect(Collectors.toList()))
                 .build();
+
+        noCosmetic = ChatColor.translateAlternateColorCodes('&', config.getString("messages.no_cosmetics"));
+        selectedCosmetic = ChatColor.translateAlternateColorCodes('&', config.getString("messages.selected_cosmetic"));
+        unselectedCosmetic = ChatColor.translateAlternateColorCodes('&', config.getString("messages.unselected_cosmetic"));
     }
 
     @Getter private static int giveDelay;
@@ -31,5 +35,6 @@ public class NeonConstants {
     @Getter private static boolean enabled = false;
     @Getter private static String mongoCollection;
     @Getter private static ItemStack cosmeticItem;
+    @Getter private static String noCosmetic, selectedCosmetic, unselectedCosmetic;
 
 }

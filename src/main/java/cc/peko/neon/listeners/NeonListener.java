@@ -32,8 +32,8 @@ public class NeonListener implements Listener {
 
         if(itemStack == null || itemStack.getType() == Material.AIR || !itemStack.isSimilar(NeonConstants.getCosmeticItem())) return;
         if(event.getAction() != Action.RIGHT_CLICK_AIR && event.getAction() != Action.RIGHT_CLICK_BLOCK) return;
-
-        new CosmeticMenu().openMenu(player);
+        if(Neon.getInstance().getCosmeticHandler().getPlayer(player).getAvailableCosmetics().isEmpty()) player.sendMessage(NeonConstants.getNoCosmetic());
+        else new CosmeticMenu().openMenu(player);
     }
 
 }

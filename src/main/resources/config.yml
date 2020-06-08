@@ -12,3 +12,8 @@ item:
   amount: 1
   description:
     - "&7Right click to select a cosmetic!"
+
+messages:
+  no_cosmetics: "&cYou do not have permission to use cosmetics, donate for them at &c&lpeko.cc/store&c."
+  selected_cosmetic: "&eYou have selected the &f%displayName% &ecosmetic."
+  unselected_cosmetic: "&eYou have unselected the &f%displayName% &ecosmetic."

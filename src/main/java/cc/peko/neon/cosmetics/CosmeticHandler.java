@@ -31,7 +31,7 @@ public class CosmeticHandler implements Runnable, Listener {
             exception.printStackTrace();
         }
         Bukkit.getPluginManager().registerEvents(this, Neon.getInstance());
-        Bukkit.getScheduler().runTaskTimer(Neon.getInstance(), this, 2L, 2L);
+        Bukkit.getScheduler().runTaskTimer(Neon.getInstance(), this, 0, 2);
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cc.peko.neon.cosmetics;
 
 import cc.peko.neon.Neon;
+import cc.peko.neon.NeonConstants;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -23,7 +24,7 @@ public abstract class Cosmetic implements Listener {
     public abstract void remove(Player player);
 
     public void unselectCosmetic(Player player) {
-        player.sendMessage(ChatColor.YELLOW + "You have unselected your " + getDisplayName() + ChatColor.YELLOW + " cosmetic.");
+        player.sendMessage(NeonConstants.getUnselectedCosmetic().replace("%displayName%", getDisplayName()));
         Neon.getInstance().getCosmeticHandler().getPlayer(player).getSelectedCosmetics().remove(this);
     }
 

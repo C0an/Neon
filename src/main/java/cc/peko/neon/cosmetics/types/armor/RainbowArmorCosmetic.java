@@ -63,7 +63,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
     @Override
     public void remove(Player player) {
         unselectCosmetic(player);
-        player.getInventory().setArmorContents(new ItemStack[0]);
+        player.getInventory().setArmorContents(null);
         player.updateInventory();
     }
 
