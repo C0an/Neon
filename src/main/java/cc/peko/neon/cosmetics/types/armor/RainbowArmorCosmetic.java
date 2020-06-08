@@ -1,7 +1,9 @@
 package cc.peko.neon.cosmetics.types.armor;
 
+import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
+import org.bukkit.Bukkit;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -50,8 +52,14 @@ public class RainbowArmorCosmetic extends Cosmetic {
             Color.fromRGB(255, 0, 179),
             Color.fromRGB(255, 0, 128)
     );
-
     int lastSelected = 1;
+
+    public RainbowArmorCosmetic() {
+        Bukkit.getScheduler().runTaskTimer(Neon.getInstance(), () -> {
+            if(lastSelected >= colorList.size()) lastSelected = 1;
+            else lastSelected++;
+        }, 0, 2L);
+    }
 
     @Override
     public String getName() {
@@ -89,13 +97,11 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public void tick(Player player) {
-        if(lastSelected > colorList.size()) lastSelected = 1;
-        Color color = colorList.get(lastSelected);
+        Color color = getColor();
         player.getInventory().setHelmet(getColorArmor(Material.LEATHER_HELMET, color));
         player.getInventory().setChestplate(getColorArmor(Material.LEATHER_CHESTPLATE, color));
         player.getInventory().setLeggings(getColorArmor(Material.LEATHER_LEGGINGS, color));
         player.getInventory().setBoots(getColorArmor(Material.LEATHER_BOOTS, color));
-        lastSelected++;
     }
 
     @Override
@@ -103,6 +109,10 @@ public class RainbowArmorCosmetic extends Cosmetic {
         unselectCosmetic(player);
         player.getInventory().setArmorContents(null);
         player.updateInventory();
+    }
+
+    public Color getColor() {
+        return colorList.get(lastSelected);
     }
 
     public ItemStack getColorArmor(Material m, Color c) {
