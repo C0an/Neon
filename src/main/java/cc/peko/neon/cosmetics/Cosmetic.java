@@ -22,9 +22,9 @@ public abstract class Cosmetic implements Listener {
     public abstract void tick(Player player);
     public abstract void remove(Player player);
 
-    public boolean unselectCosmetic(Player player) {
+    public void unselectCosmetic(Player player) {
         player.sendMessage(ChatColor.YELLOW + "You have unselected your " + getDisplayName() + ChatColor.YELLOW + " cosmetic.");
-        return Neon.getInstance().getCosmeticHandler().getPlayer(player).getSelectedCosmetics().remove(this);
+        Neon.getInstance().getCosmeticHandler().getPlayer(player).getSelectedCosmetics().remove(this);
     }
 
     public boolean hasSelected(Player player) {
