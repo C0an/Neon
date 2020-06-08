@@ -3,6 +3,7 @@ package cc.peko.neon.cosmetics.player;
 import cc.peko.neon.Neon;
 import cc.peko.neon.NeonConstants;
 import cc.peko.neon.cosmetics.Cosmetic;
+import cc.peko.neon.cosmetics.CosmeticType;
 import lombok.Getter;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -35,6 +36,10 @@ public class CosmeticPlayer {
 
     public List<Cosmetic> getAvailableCosmetics() {
         return Neon.getInstance().getCosmeticHandler().getCosmetics().stream().filter(cosmetic -> getPlayer().hasPermission(cosmetic.getPermission())).collect(Collectors.toList());
+    }
+
+    public Cosmetic getCosmeticFromCategory(CosmeticType cosmeticType) {
+        return getSelectedCosmetics().stream().filter(cosmetic -> cosmetic.getCosmeticType() == cosmeticType).findFirst().orElse(null);
     }
 
     public Player getPlayer() {

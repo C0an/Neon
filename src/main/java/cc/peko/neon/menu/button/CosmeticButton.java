@@ -2,6 +2,7 @@ package cc.peko.neon.menu.button;
 
 import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
+import cc.peko.neon.cosmetics.CosmeticType;
 import cc.peko.neon.cosmetics.player.CosmeticPlayer;
 import lombok.AllArgsConstructor;
 import org.bukkit.ChatColor;
@@ -17,6 +18,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CosmeticButton extends Button {
 
+    private final CosmeticType cosmeticType;
     private final Cosmetic cosmetic;
 
     @Override
@@ -53,7 +55,18 @@ public class CosmeticButton extends Button {
             return;
         }
 
-        if(cosmeticPlayer.isSelected(cosmetic)) cosmetic.remove(player);
-        else cosmeticPlayer.selectCosmetic(cosmetic);
+        Cosmetic selectedFromCategory = cosmeticPlayer.getCosmeticFromCategory(cosmeticType);
+        if(selectedFromCategory == null) {
+            if(cosmeticPlayer.isSelected(cosmetic)) cosmetic.remove(player);
+            else cosmeticPlayer.selectCosmetic(cosmetic);
+        }else {
+            if(selectedFromCategory == cosmetic) {
+                cosmetic.remove(player);
+            }else {
+                cosmetic.remove(player);
+                cosmeticPlayer.selectCosmetic(cosmetic);
+            }
+        }
+
     }
 }

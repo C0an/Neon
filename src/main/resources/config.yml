@@ -15,5 +15,6 @@ item:
 
 messages:
   no_cosmetics: "&cYou do not have permission to use cosmetics, donate for them at &c&lpeko.cc/store&c."
+  no_permission: "&cYou do not have permission to use this cosmetic."
   selected_cosmetic: "&eYou have selected the &f%displayName% &ecosmetic."
   unselected_cosmetic: "&eYou have unselected the &f%displayName% &ecosmetic."

@@ -59,7 +59,7 @@ public class CosmeticMenu extends Menu {
                     }
                 });
             }
-        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndIncrement() + 1, new CosmeticButton(iCosmetic)));
+        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndIncrement() + 1, new CosmeticButton(cosmeticType, iCosmetic)));
 
         return buttons;
     }
