@@ -6,6 +6,7 @@ import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.LeatherArmorMeta;
 import rip.protocol.plib.util.ItemBuilder;
 
 import java.awt.*;
@@ -13,6 +14,44 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RainbowArmorCosmetic extends Cosmetic {
+
+    private List<Color> colorList = Arrays.asList(
+            Color.fromRGB(255, 0,0),
+            Color.fromRGB(255, 68,0),
+            Color.fromRGB(255, 111,0),
+            Color.fromRGB(255, 171,0),
+            Color.fromRGB(255, 255,0),
+            Color.fromRGB(188, 255,0),
+            Color.fromRGB(128, 255,0),
+            Color.fromRGB(43, 255, 0),
+            Color.fromRGB(0, 255,9),
+            Color.fromRGB(0, 255,51),
+            Color.fromRGB(0, 255, 111),
+            Color.fromRGB(0, 255, 162),
+            Color.fromRGB(0, 255, 230),
+            Color.fromRGB(0, 239, 255),
+            Color.fromRGB(0, 196, 255),
+            Color.fromRGB(0, 173, 255),
+            Color.fromRGB(0, 162, 255),
+            Color.fromRGB(0, 137, 255),
+            Color.fromRGB(0, 100, 255),
+            Color.fromRGB(0, 77, 255),
+            Color.fromRGB(0, 34, 255),
+            Color.fromRGB(17, 0, 255),
+            Color.fromRGB(37, 0, 255),
+            Color.fromRGB(68, 0, 255),
+            Color.fromRGB(89, 0, 255),
+            Color.fromRGB(102, 0, 255),
+            Color.fromRGB(124, 0, 255),
+            Color.fromRGB(154, 0, 255),
+            Color.fromRGB(222, 0, 255),
+            Color.fromRGB(255, 0, 247),
+            Color.fromRGB(255, 0, 247),
+            Color.fromRGB(255, 0, 179),
+            Color.fromRGB(255, 0, 128)
+    );
+
+    int lastSelected = 1;
 
     @Override
     public String getName() {
@@ -46,18 +85,17 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public void apply(Player player) {
-        player.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET));
-        player.getInventory().setChestplate(new ItemStack(Material.LEATHER_CHESTPLATE));
-        player.getInventory().setLeggings(new ItemStack(Material.LEATHER_LEGGINGS));
-        player.getInventory().setBoots(new ItemStack(Material.LEATHER_BOOTS));
-        player.updateInventory();
     }
 
     @Override
     public void tick(Player player) {
-        if(player.getInventory().getHelmet().getType() == Material.LEATHER_HELMET) player.getInventory().setHelmet(new ItemStack(Material.DIAMOND_HELMET));
-        else player.getInventory().setHelmet(new ItemStack(Material.LEATHER_HELMET));
-        player.updateInventory();
+        if(lastSelected > colorList.size()) lastSelected = 1;
+        Color color = colorList.get(lastSelected);
+        player.getInventory().setHelmet(getColorArmor(Material.LEATHER_HELMET, color));
+        player.getInventory().setChestplate(getColorArmor(Material.LEATHER_CHESTPLATE, color));
+        player.getInventory().setLeggings(getColorArmor(Material.LEATHER_LEGGINGS, color));
+        player.getInventory().setBoots(getColorArmor(Material.LEATHER_BOOTS, color));
+        lastSelected++;
     }
 
     @Override
@@ -67,5 +105,12 @@ public class RainbowArmorCosmetic extends Cosmetic {
         player.updateInventory();
     }
 
+    public ItemStack getColorArmor(Material m, Color c) {
+        ItemStack i = new ItemStack(m, 1);
+        LeatherArmorMeta meta = (LeatherArmorMeta) i.getItemMeta();
+        meta.setColor(c);
+        i.setItemMeta(meta);
+        return i;
+    }
 
 }
