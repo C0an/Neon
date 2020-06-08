@@ -56,7 +56,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     public RainbowArmorCosmetic() {
         Bukkit.getScheduler().runTaskTimer(Neon.getInstance(), () -> {
-            if(lastSelected >= colorList.size()) lastSelected = 1;
+            if(lastSelected >= colorList.size() - 1) lastSelected = 0;
             else lastSelected++;
         }, 0, 2L);
     }
