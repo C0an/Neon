@@ -61,7 +61,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
         Bukkit.getScheduler().runTaskTimer(Neon.getInstance(), () -> {
             if(lastSelected >= colorList.size() - 1) lastSelected = 0;
             else lastSelected++;
-        }, 0, 2L);
+        }, 0, 1);
     }
 
     @Override
@@ -112,11 +112,6 @@ public class RainbowArmorCosmetic extends Cosmetic {
         player.getInventory().setLeggings(leggings);
         player.getInventory().setBoots(boots);
 
-//        CraftPlayer craftPlayer = (CraftPlayer)player;
-//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 4, CraftItemStack.asNMSCopy(helmet)));
-//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 3, CraftItemStack.asNMSCopy(chestplate)));
-//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 2, CraftItemStack.asNMSCopy(leggings)));
-//        craftPlayer.getHandle().playerConnection.sendPacket(new PacketPlayOutEntityEquipment(craftPlayer.getEntityId(), 1, CraftItemStack.asNMSCopy(boots)));
         player.updateInventory();
     }
 
