@@ -14,7 +14,7 @@ public enum CosmeticType {
     ARMOR("Armor", Material.LEATHER_CHESTPLATE),
     PETS("Pets", Material.BONE),
     GADGET("Gadgets", Material.BEACON),
-    OTHER("Particles", Material.BLAZE_POWDER);
+    PARTICLE("Particles", Material.BLAZE_POWDER);
 
     private final String displayName;
     private final Material icon;
