@@ -62,7 +62,7 @@ public class FlameRingParticle extends Cosmetic {
                 double z = (radius * Math.cos(angle));
                 angle -= 0.1;
                 Location loc = new Location(player.getWorld(), player.getLocation().getX() + x, player.getLocation().getY(), player.getLocation().getZ() + z);
-                player.getWorld().playEffect(loc, Effect.FLAME, 1);
+                player.getWorld().playEffect(loc, Effect.HAPPY_VILLAGER, 1);
 
             }
         };
