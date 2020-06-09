@@ -1,18 +1,21 @@
 package cc.peko.neon.cosmetics.types.particles;
 
+import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
+import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
 public class FlameRingParticle extends Cosmetic {
 
-    private final Map<UUID, Double> ringMap = new HashMap<>();
+    private final Map<UUID, Integer> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
@@ -46,22 +49,33 @@ public class FlameRingParticle extends Cosmetic {
 
     @Override
     public void apply(Player player) {
-        ringMap.put(player.getUniqueId(), (double) 0);
+        BukkitRunnable runnable = new BukkitRunnable() {
+            private double radius = 6.5;
+            private double angle = Math.PI;
+
+            @Override
+            public void run() {
+                if(angle < -Math.PI/8) angle = Math.PI;
+
+                double y = (radius * Math.sin(angle));
+                double z = (radius * Math.cos(angle));
+                angle -= 0.1;
+                player.getWorld().playEffect(new Location(player.getWorld(), -9.5, 72 + y, 25.5 + z), Effect.FLAME, 1);
+
+            }
+        };
+        runnable.runTaskTimer(Neon.getInstance(), 0, 1);
+        ringMap.put(player.getUniqueId(), runnable.getTaskId());
     }
 
     @Override
     public void tick(Player player) {
-        double alpha = ringMap.put(player.getUniqueId(), ringMap.get(player.getUniqueId()) + Math.PI / 16);
-        Location loc = player.getLocation();
-        Location firstLocation = loc.clone().add( Math.cos( alpha ), Math.sin( alpha ) + 1, Math.sin( alpha ) );
-        Location secondLocation = loc.clone().add( Math.cos( alpha + Math.PI ), Math.sin( alpha ) + 1, Math.sin( alpha + Math.PI ) );
-        player.playEffect(firstLocation, Effect.FLAME, 1);
-        player.playEffect(secondLocation, Effect.FLAME, 1);
+
     }
 
     @Override
     public void remove(Player player) {
         unselectCosmetic(player);
-        ringMap.remove(player.getUniqueId());
+        Bukkit.getScheduler().cancelTask(ringMap.remove(player.getUniqueId()));
     }
 }
