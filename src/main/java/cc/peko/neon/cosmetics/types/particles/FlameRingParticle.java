@@ -55,8 +55,8 @@ public class FlameRingParticle extends Cosmetic {
         Location loc = player.getLocation();
         Location firstLocation = loc.clone().add( Math.cos( alpha ), Math.sin( alpha ) + 1, Math.sin( alpha ) );
         Location secondLocation = loc.clone().add( Math.cos( alpha + Math.PI ), Math.sin( alpha ) + 1, Math.sin( alpha + Math.PI ) );
-        player.playEffect(firstLocation, Effect.FLAME, 0);
-        player.playEffect(secondLocation, Effect.FLAME, 0);
+        player.playEffect(firstLocation, Effect.FLAME, 1);
+        player.playEffect(secondLocation, Effect.FLAME, 1);
     }
 
     @Override
