@@ -50,13 +50,12 @@ public class FlameRingParticle extends Cosmetic {
     @Override
     public void apply(Player player) {
         BukkitRunnable runnable = new BukkitRunnable() {
-            private double radius = 3.5;
+            private double radius = 1.5;
             private double angle = Math.PI;
 
             @Override
             public void run() {
                 System.out.println("Helo we r runing");
-                if(angle < -Math.PI/2) angle = Math.PI;
 
                 double x = (radius * Math.sin(angle));
                 double z = (radius * Math.cos(angle));
