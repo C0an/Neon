@@ -55,6 +55,7 @@ public class FlameRingParticle extends Cosmetic {
 
             @Override
             public void run() {
+                System.out.println("Helo we r runing");
                 if(angle < -Math.PI/8) angle = Math.PI;
 
                 double y = (radius * Math.sin(angle));
