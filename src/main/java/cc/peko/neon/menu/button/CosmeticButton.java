@@ -41,7 +41,7 @@ public class CosmeticButton extends Button {
         CosmeticPlayer cosmeticPlayer = Neon.getInstance().getCosmeticHandler().getPlayer(player);
         ItemStack itemStack = cosmetic.getIcon().clone();
 
-        if(cosmeticPlayer.isSelected(cosmetic)) itemStack.addEnchantment(Enchantment.DURABILITY, 1);
+        if(cosmeticPlayer.isSelected(cosmetic)) itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 
         return itemStack;
     }

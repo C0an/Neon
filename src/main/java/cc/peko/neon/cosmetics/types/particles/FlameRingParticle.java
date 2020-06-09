@@ -12,7 +12,7 @@ import java.util.*;
 
 public class FlameRingParticle extends Cosmetic {
 
-    private Map<UUID, Double> ringMap = new HashMap<>();
+    private final Map<UUID, Double> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
