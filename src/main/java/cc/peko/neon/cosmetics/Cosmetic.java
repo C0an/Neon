@@ -2,15 +2,10 @@ package cc.peko.neon.cosmetics;
 
 import cc.peko.neon.Neon;
 import cc.peko.neon.NeonConstants;
-import net.minecraft.server.v1_7_R4.PacketPlayOutWorldParticles;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
-import rip.protocol.plib.util.Reflection;
 
-import java.lang.reflect.Constructor;
 import java.util.List;
 
 public abstract class Cosmetic implements Listener {
