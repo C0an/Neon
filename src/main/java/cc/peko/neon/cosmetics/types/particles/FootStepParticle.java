@@ -12,18 +12,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class LavaRingParticle extends Cosmetic {
+public class FootStepParticle extends Cosmetic {
 
     private final Map<UUID, Integer> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
-        return "Lava Ring";
+        return "Foot Steps";
     }
 
     @Override
     public String getDisplayName() {
-        return "Lava Ring";
+        return "Foot Steps";
     }
 
     @Override
@@ -33,17 +33,17 @@ public class LavaRingParticle extends Cosmetic {
 
     @Override
     public String getPermission() {
-        return "neon.cosmetic.lavaring";
+        return "neon.cosmetic.footstep";
     }
 
     @Override
     public List<String> getDescription() {
-        return Arrays.asList(ChatColor.WHITE + "Did someone turn the heating up?", ChatColor.WHITE + "Summon a burning hot ring around you!");
+        return Arrays.asList(ChatColor.WHITE + "Trace your steps and find", ChatColor.WHITE + "your way back to where you started!");
     }
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(Material.BLAZE_POWDER);
+        return new ItemStack(Material.CHAINMAIL_BOOTS);
     }
 
     @Override
@@ -56,28 +56,16 @@ public class LavaRingParticle extends Cosmetic {
             public void run() {
                 if(player == null || !player.isOnline()) this.cancel();
 
-                double x = (radius * Math.sin(angle));
-                double z = (radius * Math.cos(angle));
-                angle -= 0.1;
+                Location loc = player.getLocation();
 
-                Location loc = new Location(player.getWorld(), player.getLocation().getX() + x, player.getLocation().getY(), player.getLocation().getZ() + z);
+                PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("footstep",
+                        (float) loc.getX() ,
+                        (float) loc.getY(),
+                        (float) loc.getZ(),
+                        0, 0, 0,
+                        5, 0);
 
-                double y = loc.getY();
-                for(int i = 0; i < 4; i++) {
-                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("dripLava",
-                            (float) loc.getX() ,
-                            (float) y,
-                            (float) loc.getZ(),
-                            0, 0, 0,
-                            5, 0);
-                    y = y+0.5;
-
-                    getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
-
-                }
-
-
-
+                getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
             }
         };
         runnable.runTaskTimer(Neon.getInstance(), 0, 1);
