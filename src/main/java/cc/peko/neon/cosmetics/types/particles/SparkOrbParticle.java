@@ -62,7 +62,7 @@ public class SparkOrbParticle extends Cosmetic {
                     double y = r*Math.cos(phi)+1.5;
                     double z = r*Math.sin(theta)*Math.sin(phi);
                     loc.add(x, y, z);
-                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("fireworksSpark",
+                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("crit",
                             (float) loc.getX() ,
                             (float) loc.getY(),
                             (float) loc.getZ(),
@@ -71,32 +71,9 @@ public class SparkOrbParticle extends Cosmetic {
                     getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
                     loc.subtract(x, y, z);
                 }
-
-//                double x, y, z;
-//
-//                Location location1 = player.getLocation();
-//                for (double t = 0; t <= 2 * Math.PI; t = t + Math.PI / 16) {
-//                    for (double i = 0; i <= 1; i = i + 1) {
-//                        x = 0.4 * (2 * Math.PI - t) * 0.5 * Math.cos(t + phi + i * Math.PI);
-//                        y = 0.5 * t;
-//                        z = 0.4 * (2 * Math.PI - t) * 0.5 * Math.sin(t + phi + i * Math.PI);
-//                        location1.add(x, y, z);
-//
-//                        PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("reddust",
-//                                        (float) location1.getX() ,
-//                                        (float) location1.getY(),
-//                                        (float) location1.getZ(),
-//                                        255, 0, 0,
-//                                        1, 0);
-//                        getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
-//                        location1.subtract(x, y, z);
-//                    }
-//
-//                }
-
             }
         };
-        runnable.runTaskTimer(Neon.getInstance(), 0, 2);
+        runnable.runTaskTimer(Neon.getInstance(), 0, 6);
         ringMap.put(player.getUniqueId(), runnable.getTaskId());
     }
 
