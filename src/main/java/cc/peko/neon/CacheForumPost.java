@@ -22,10 +22,10 @@ public class CacheForumPost extends BukkitRunnable {
             BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(hc.getInputStream()));
             JsonObject jsonElement = JsonParser.parseReader(bufferedReader).getAsJsonObject();
             if(!Boolean.parseBoolean(jsonElement.get("success").toString())) {
-                Neon.getInstance().setForumPost(new ForumPost(jsonElement.get("message").toString(), null, null, null, -1, -1));
+                Neon.getInstance().setForumPost(new ForumPost(jsonElement.get("message").toString(), null,  null, -1, -1));
                 return;
             }
-            Neon.getInstance().setForumPost(new ForumPost(jsonElement.get("title").toString(), jsonElement.get("directURL").toString(), jsonElement.get("author").toString(), UUID.fromString(jsonElement.get("authorUUID").toString()), Long.parseLong(jsonElement.get("createdAt").toString()), Long.parseLong(jsonElement.get("lastUpdate").toString())));
+            Neon.getInstance().setForumPost(new ForumPost(jsonElement.get("title").toString(), jsonElement.get("directURL").toString(), jsonElement.get("author").toString(), Long.parseLong(jsonElement.get("createdAt").toString()), Long.parseLong(jsonElement.get("lastUpdate").toString())));
         }catch (Exception e) {
             e.printStackTrace();
         }
