@@ -68,7 +68,7 @@ public class FootStepParticle extends Cosmetic {
                 getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
             }
         };
-        runnable.runTaskTimer(Neon.getInstance(), 0, 1);
+        runnable.runTaskTimer(Neon.getInstance(), 0, 4);
         ringMap.put(player.getUniqueId(), runnable.getTaskId());
     }
 
