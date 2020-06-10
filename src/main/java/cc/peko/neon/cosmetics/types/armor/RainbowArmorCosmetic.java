@@ -91,7 +91,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public ItemStack getIcon() {
-        return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(Color.RED).name(getDisplayName()).setLore(getDescription()).build();
+        return ItemBuilder.of(Material.LEATHER_CHESTPLATE).color(getColor()).build();
     }
 
     @Override

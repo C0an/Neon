@@ -36,7 +36,7 @@ public class CosmeticMenu extends Menu {
             for (CosmeticType types : CosmeticType.values()) {
                 if(types.getCosmetics().isEmpty()) continue;
 
-                buttons.put(itemPosition.getAndIncrement() + 2, new Button() {
+                buttons.put(itemPosition.getAndAdd(2), new Button() {
                     @Override
                     public String getName(Player var1) {
                         return ChatColor.BLUE + types.getDisplayName();
@@ -59,7 +59,7 @@ public class CosmeticMenu extends Menu {
                     }
                 });
             }
-        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndIncrement() + 2, new CosmeticButton(cosmeticType, iCosmetic)));
+        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndAdd(2), new CosmeticButton(cosmeticType, iCosmetic)));
 
         return buttons;
     }

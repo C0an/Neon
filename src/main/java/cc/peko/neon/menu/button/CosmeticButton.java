@@ -11,8 +11,10 @@ import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import rip.protocol.plib.menu.Button;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -40,6 +42,18 @@ public class CosmeticButton extends Button {
     public ItemStack getButtonItem(Player player) {
         CosmeticPlayer cosmeticPlayer = Neon.getInstance().getCosmeticHandler().getPlayer(player);
         ItemStack itemStack = cosmetic.getIcon().clone();
+        ItemMeta itemMeta = itemStack.getItemMeta();
+
+        List<String> loreList = new ArrayList<>();
+        loreList.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "-------------------------------");
+        loreList.addAll(cosmetic.getDescription());
+        loreList.add("");
+        loreList.add(player.hasPermission(cosmetic.getPermission()) ? (cosmeticPlayer.getSelectedCosmetics().contains(cosmetic) ? ChatColor.RED + "Click to deselect this Cosmetic!" : ChatColor.GREEN + "Click to select this Cosmetic!") : ChatColor.RED + "You do not have permission for this cosmetic!");
+        loreList.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "-------------------------------");
+
+        itemMeta.setDisplayName(cosmetic.getDisplayName());
+        itemMeta.setLore(loreList);
+        itemStack.setItemMeta(itemMeta);
 
         if(cosmeticPlayer.isSelected(cosmetic)) itemStack.addUnsafeEnchantment(Enchantment.DURABILITY, 1);
 
@@ -63,7 +77,7 @@ public class CosmeticButton extends Button {
             if(selectedFromCategory == cosmetic) {
                 cosmetic.remove(player);
             }else {
-                cosmetic.remove(player);
+                selectedFromCategory.remove(player);
                 cosmeticPlayer.selectCosmetic(cosmetic);
             }
         }
