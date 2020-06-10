@@ -58,10 +58,10 @@ public class FootStepParticle extends Cosmetic {
 
                 if(loc.distance(player.getLocation()) < 0.3) return;
                 else loc = player.getLocation();
-
+                float y = (float) (loc.getY() + 0.002);
                 PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("footstep",
                         (float) loc.getX() ,
-                        (float) loc.getY(),
+                        y,
                         (float) loc.getZ(),
                         0, 0, 0,
                         1, 0);
