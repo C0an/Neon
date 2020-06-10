@@ -70,7 +70,7 @@ public class VillagerRingParticle extends Cosmetic {
                             (float) loc.getZ(),
                             0, 0, 0,
                             1, 0);
-                    y = y+2;
+                    y = y+0.5;
                     getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
 
                 }
