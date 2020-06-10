@@ -3,11 +3,9 @@ package cc.peko.neon.cosmetics.types.particles;
 import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
+import cc.peko.neon.cosmetics.types.armor.RainbowArmorCosmetic;
 import net.minecraft.server.v1_7_R4.PacketPlayOutWorldParticles;
-import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
+import org.bukkit.*;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -15,18 +13,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class BloodHelixParticle extends Cosmetic {
+public class RainbowHelixParticle extends Cosmetic {
 
     private final Map<UUID, Integer> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
-        return "Blood Helix";
+        return "Rainbow Helix";
     }
 
     @Override
     public String getDisplayName() {
-        return "Blood Helix";
+        return "Rainbow Helix";
     }
 
     @Override
@@ -36,17 +34,17 @@ public class BloodHelixParticle extends Cosmetic {
 
     @Override
     public String getPermission() {
-        return "neon.cosmetic.bloodhelix";
+        return "neon.cosmetic.rainbowhelix";
     }
 
     @Override
     public List<String> getDescription() {
-        return Arrays.asList(ChatColor.WHITE + "You are a true demon...", ChatColor.WHITE + "The blood of your enemies surround you!");
+        return Arrays.asList(ChatColor.WHITE + "The rainbow surrounds you! Shine bright and", ChatColor.WHITE + "stand out with the Rainbow Helix!");
     }
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(Material.REDSTONE);
+        return new ItemStack(Material.EXP_BOTTLE);
     }
 
     @Override
@@ -67,11 +65,13 @@ public class BloodHelixParticle extends Cosmetic {
                         z = 0.4 * (2 * Math.PI - t) * 0.5 * Math.sin(t + phi + i * Math.PI);
                         location1.add(x, y, z);
 
+                        Color color = RainbowArmorCosmetic.getColor();
+
                         PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("reddust",
                                         (float) location1.getX() ,
                                         (float) location1.getY(),
                                         (float) location1.getZ(),
-                                        255, 0, 0,
+                                        color.getRed(), color.getGreen(), color.getBlue(),
                                         1, 0);
                         getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
                         location1.subtract(x, y, z);

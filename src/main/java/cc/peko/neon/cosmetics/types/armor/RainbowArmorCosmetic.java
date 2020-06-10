@@ -5,6 +5,7 @@ import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
 import net.minecraft.server.v1_7_R4.PacketPlayOutEntityEquipment;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
 import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
@@ -20,7 +21,7 @@ import java.util.List;
 
 public class RainbowArmorCosmetic extends Cosmetic {
 
-    private List<Color> colorList = Arrays.asList(
+    private static List<Color> colorList = Arrays.asList(
             Color.fromRGB(255, 0,0),
             Color.fromRGB(255, 68,0),
             Color.fromRGB(255, 111,0),
@@ -55,7 +56,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
             Color.fromRGB(255, 0, 179),
             Color.fromRGB(255, 0, 128)
     );
-    int lastSelected = 1;
+    static int lastSelected = 1;
 
     public RainbowArmorCosmetic() {
         Bukkit.getScheduler().runTaskTimer(Neon.getInstance(), () -> {
@@ -86,7 +87,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public List<String> getDescription() {
-        return Arrays.asList("Stand out from the crowd", "and look snazzy with your", "rainbow armor!");
+        return Arrays.asList(ChatColor.WHITE + "Stand out from the crowd and look", ChatColor.WHITE + "snazzy with your rainbow armor!");
     }
 
     @Override
@@ -122,7 +123,7 @@ public class RainbowArmorCosmetic extends Cosmetic {
         player.updateInventory();
     }
 
-    public Color getColor() {
+    public static Color getColor() {
         return colorList.get(lastSelected);
     }
 

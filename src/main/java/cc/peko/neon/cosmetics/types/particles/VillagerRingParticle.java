@@ -12,18 +12,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class LavaRingParticle extends Cosmetic {
+public class VillagerRingParticle extends Cosmetic {
 
     private final Map<UUID, Integer> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
-        return "Lava Ring";
+        return "Villager Ring";
     }
 
     @Override
     public String getDisplayName() {
-        return "Lava Ring";
+        return "Villager Ring";
     }
 
     @Override
@@ -33,17 +33,17 @@ public class LavaRingParticle extends Cosmetic {
 
     @Override
     public String getPermission() {
-        return "neon.cosmetic.lavaring";
+        return "neon.cosmetic.villagerring";
     }
 
     @Override
     public List<String> getDescription() {
-        return Arrays.asList(ChatColor.WHITE + "Did someone turn the heating up?", ChatColor.WHITE + "Summon a burning hot ring around you!");
+        return Arrays.asList(ChatColor.WHITE + "Be one amongst the Squidwards", ChatColor.WHITE + "The emerald ring will follow you!");
     }
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(Material.BLAZE_POWDER);
+        return new ItemStack(Material.EMERALD);
     }
 
     @Override
@@ -64,12 +64,12 @@ public class LavaRingParticle extends Cosmetic {
 
                 double y = loc.getY();
                 for(int i = 0; i < 4; i++) {
-                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("dripLava",
+                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("happyVillager",
                             (float) loc.getX() ,
                             (float) y,
                             (float) loc.getZ(),
                             0, 0, 0,
-                            5, 0);
+                            1, 0);
                     y = y+2;
                     getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
 
