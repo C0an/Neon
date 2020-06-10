@@ -63,7 +63,7 @@ public class FootStepParticle extends Cosmetic {
                         (float) loc.getY(),
                         (float) loc.getZ(),
                         0, 0, 0,
-                        5, 0);
+                        1, 0);
 
                 getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
             }
