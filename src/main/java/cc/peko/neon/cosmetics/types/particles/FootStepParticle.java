@@ -49,14 +49,15 @@ public class FootStepParticle extends Cosmetic {
     @Override
     public void apply(Player player) {
         BukkitRunnable runnable = new BukkitRunnable() {
-            private double radius = 1.5;
-            private double angle = Math.PI;
+
+            Location loc = player.getLocation();
 
             @Override
             public void run() {
                 if(player == null || !player.isOnline()) this.cancel();
 
-                Location loc = player.getLocation();
+                if(loc == player.getLocation()) return;
+                else loc = player.getLocation();
 
                 PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("footstep",
                         (float) loc.getX() ,
