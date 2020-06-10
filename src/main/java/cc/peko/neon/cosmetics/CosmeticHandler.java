@@ -46,12 +46,16 @@ public class CosmeticHandler implements Runnable, Listener {
 
     @EventHandler
     public void onQuit(PlayerQuitEvent event) {
-        cosmeticPlayers.remove(getPlayer(event.getPlayer()));
+        CosmeticPlayer cosmeticPlayer = getPlayer(event.getPlayer());
+        cosmeticPlayer.getSelectedCosmetics().forEach(cosmetic -> cosmetic.remove(event.getPlayer()));
+        cosmeticPlayers.remove(cosmeticPlayer);
     }
 
     @EventHandler
     public void onKick(PlayerKickEvent event) {
-        cosmeticPlayers.remove(getPlayer(event.getPlayer()));
+        CosmeticPlayer cosmeticPlayer = getPlayer(event.getPlayer());
+        cosmeticPlayer.getSelectedCosmetics().forEach(cosmetic -> cosmetic.remove(event.getPlayer()));
+        cosmeticPlayers.remove(cosmeticPlayer);
     }
 
 

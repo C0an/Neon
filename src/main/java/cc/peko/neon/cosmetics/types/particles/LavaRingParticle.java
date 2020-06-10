@@ -13,18 +13,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class FlameRingParticle extends Cosmetic {
+public class LavaRingParticle extends Cosmetic {
 
     private final Map<UUID, Integer> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
-        return "Flame Ring";
+        return "Lava Ring";
     }
 
     @Override
     public String getDisplayName() {
-        return "Flame Ring";
+        return "Lava Ring";
     }
 
     @Override
@@ -34,12 +34,12 @@ public class FlameRingParticle extends Cosmetic {
 
     @Override
     public String getPermission() {
-        return "neon.cosmetic.flamering";
+        return "neon.cosmetic.lavaring";
     }
 
     @Override
     public List<String> getDescription() {
-        return Arrays.asList("Burn.... BURN!", "Summon a hot ring around", "yourself to make stand out!");
+        return Arrays.asList("Did someone turn the heating up?", "Summon a burning hot ring around you!");
     }
 
     @Override
@@ -55,14 +55,13 @@ public class FlameRingParticle extends Cosmetic {
 
             @Override
             public void run() {
-                System.out.println("Helo we r runing");
+                if(player == null || !player.isOnline()) this.cancel();
 
                 double x = (radius * Math.sin(angle));
                 double z = (radius * Math.cos(angle));
                 angle -= 0.1;
                 Location loc = new Location(player.getWorld(), player.getLocation().getX() + x, player.getLocation().getY(), player.getLocation().getZ() + z);
-                player.getWorld().playEffect(loc, Effect.HAPPY_VILLAGER, 1);
-
+                player.getWorld().playEffect(loc, Effect.LAVADRIP, 1);
             }
         };
         runnable.runTaskTimer(Neon.getInstance(), 0, 1);

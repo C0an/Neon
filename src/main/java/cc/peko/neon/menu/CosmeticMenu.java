@@ -30,13 +30,13 @@ public class CosmeticMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player var1) {
         Map<Integer, Button> buttons = new HashMap<>();
-        AtomicInteger itemPosition = new AtomicInteger(0);
+        AtomicInteger itemPosition = new AtomicInteger(1);
 
         if(getCosmeticType() == null) {
             for (CosmeticType types : CosmeticType.values()) {
                 if(types.getCosmetics().isEmpty()) continue;
 
-                buttons.put(itemPosition.getAndIncrement() + 1, new Button() {
+                buttons.put(itemPosition.getAndIncrement() + 2, new Button() {
                     @Override
                     public String getName(Player var1) {
                         return ChatColor.BLUE + types.getDisplayName();
@@ -59,7 +59,7 @@ public class CosmeticMenu extends Menu {
                     }
                 });
             }
-        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndIncrement() + 1, new CosmeticButton(cosmeticType, iCosmetic)));
+        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndIncrement() + 2, new CosmeticButton(cosmeticType, iCosmetic)));
 
         return buttons;
     }
