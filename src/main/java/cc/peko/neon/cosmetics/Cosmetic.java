@@ -6,7 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public abstract class Cosmetic implements Listener {
 
@@ -33,6 +36,12 @@ public abstract class Cosmetic implements Listener {
 
     public boolean hasSelected(Player player) {
         return Neon.getInstance().getCosmeticHandler().getPlayer(player).isSelected(this);
+    }
+
+    public List<Player> getNearbyPlayers(Player player, int radius, boolean ignoreVis) {
+        List<Player> playerList = new ArrayList<>(Collections.singletonList(player));
+        playerList.addAll(player.getNearbyEntities(radius, radius, radius).stream().filter(entity -> entity instanceof Player && (ignoreVis || (player.canSee((Player) entity)))).map(entity -> (Player)entity).collect(Collectors.toList()));
+        return playerList;
     }
 
 }

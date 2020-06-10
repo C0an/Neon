@@ -72,11 +72,7 @@ public class BloodHelixParticle extends Cosmetic {
                                         (float) location1.getZ(),
                                         255, 0, 0,
                                         1, 0);
-
-                        player.getNearbyEntities(50, 50, 50).stream().filter(entity -> entity instanceof CraftPlayer && player.canSee((Player) entity)).map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> {
-                            craftPlayer.getHandle().playerConnection.sendPacket(packet);
-                        });
-
+                        getNearbyPlayers(player, 50, false).stream().map(entity -> (CraftPlayer)entity).forEach(craftPlayer -> craftPlayer.getHandle().playerConnection.sendPacket(packet));
                         location1.subtract(x, y, z);
                     }
 
