@@ -12,18 +12,18 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import java.util.*;
 
-public class MusicOrbParticle extends Cosmetic {
+public class SparkOrbParticle extends Cosmetic {
 
     private final Map<UUID, Integer> ringMap = new HashMap<>();
 
     @Override
     public String getName() {
-        return "Music Orb";
+        return "Spark Orb";
     }
 
     @Override
     public String getDisplayName() {
-        return "Music Orb";
+        return "Spark Orb";
     }
 
     @Override
@@ -33,26 +33,26 @@ public class MusicOrbParticle extends Cosmetic {
 
     @Override
     public String getPermission() {
-        return "neon.cosmetic.musicorb";
+        return "neon.cosmetic.sparkorb";
     }
 
     @Override
     public List<String> getDescription() {
-        return Arrays.asList(ChatColor.WHITE + "You surround yourself with the", ChatColor.WHITE + "fresh new beats and share it with others!");
+        return Arrays.asList(ChatColor.WHITE + "Electricity flows through and around you!", ChatColor.WHITE + "Shock others with your powerful orb.");
     }
 
     @Override
     public ItemStack getIcon() {
-        return new ItemStack(Material.NOTE_BLOCK);
+        return new ItemStack(Material.FIREWORK);
     }
 
     @Override
     public void apply(Player player) {
         BukkitRunnable runnable =new BukkitRunnable(){
             double phi = 0;
-            Location loc = player.getLocation();
             public void run() {
                 if(player == null || !player.isOnline()) this.cancel();
+                Location loc = player.getLocation();
 
                 phi +=  Math.PI / 10;
 
@@ -62,7 +62,7 @@ public class MusicOrbParticle extends Cosmetic {
                     double y = r*Math.cos(phi)+1.5;
                     double z = r*Math.sin(theta)*Math.sin(phi);
                     loc.add(x, y, z);
-                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("note",
+                    PacketPlayOutWorldParticles packet = new PacketPlayOutWorldParticles("fireworksSpark",
                             (float) loc.getX() ,
                             (float) loc.getY(),
                             (float) loc.getZ(),
