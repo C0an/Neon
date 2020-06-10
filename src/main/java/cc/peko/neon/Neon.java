@@ -1,6 +1,7 @@
 package cc.peko.neon;
 
 import cc.peko.neon.cosmetics.CosmeticHandler;
+import cc.peko.neon.cosmetics.player.CosmeticPlayer;
 import cc.peko.neon.listeners.NeonListener;
 import lombok.Getter;
 import org.bukkit.Bukkit;
@@ -21,6 +22,7 @@ public class Neon extends JavaPlugin {
 
     @Override
     public void onDisable() {
+        cosmeticHandler.getCosmeticPlayers().forEach(cosmeticPlayer -> cosmeticPlayer.getSelectedCosmetics().forEach(cosmetic -> cosmetic.remove(cosmeticPlayer.getPlayer())));
         instance = null;
     }
 
