@@ -5,6 +5,7 @@ import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
 import cc.peko.neon.cosmetics.player.CosmeticPlayer;
 import lombok.AllArgsConstructor;
+import net.frozenorb.qlib.menu.Button;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.enchantments.Enchantment;
@@ -12,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import rip.protocol.plib.menu.Button;
 
 import java.util.ArrayList;
 import java.util.List;

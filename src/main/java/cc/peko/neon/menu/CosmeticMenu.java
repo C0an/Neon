@@ -3,12 +3,12 @@ package cc.peko.neon.menu;
 import cc.peko.neon.cosmetics.CosmeticType;
 import cc.peko.neon.menu.button.CosmeticButton;
 import lombok.Getter;
+import net.frozenorb.qlib.menu.Button;
+import net.frozenorb.qlib.menu.Menu;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.ClickType;
-import rip.protocol.plib.menu.Button;
-import rip.protocol.plib.menu.Menu;
 
 import java.util.*;
 import java.util.concurrent.atomic.AtomicInteger;

@@ -3,6 +3,7 @@ package cc.peko.neon.cosmetics;
 import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.player.CosmeticPlayer;
 import lombok.Getter;
+import net.frozenorb.qlib.util.ClassUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -10,7 +11,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerKickEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
-import rip.protocol.plib.util.ClassUtils;
 
 import java.util.*;
 

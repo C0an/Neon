@@ -56,7 +56,7 @@ public class BloodHelixParticle extends Cosmetic {
             public void run() {
                 if(player == null || !player.isOnline()) this.cancel();
 
-                phi = phi + Math.PI / 8;
+                phi += phi + Math.PI / 8;
                 double x, y, z;
 
                 Location location1 = player.getLocation();

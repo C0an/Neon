@@ -35,12 +35,10 @@
         </dependency>
 
         <!-- Plugin Depend Jars -->
-
         <dependency>
-            <groupId>cc.peko</groupId>
-            <artifactId>oxygen</artifactId>
-            <version>0.1</version>
-            <scope>provided</scope>
+            <groupId>net.frozenorb</groupId>
+            <artifactId>yeslib</artifactId>
+            <version>1.0</version>
         </dependency>
 
         <!-- Misc. Jars -->

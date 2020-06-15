@@ -3,6 +3,7 @@ package cc.peko.neon.cosmetics.types.armor;
 import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
+import net.frozenorb.qlib.util.ItemBuilder;
 import net.minecraft.server.v1_7_R4.PacketPlayOutEntityEquipment;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -13,7 +14,6 @@ import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
-import rip.protocol.plib.util.ItemBuilder;
 
 import java.awt.*;
 import java.util.Arrays;
