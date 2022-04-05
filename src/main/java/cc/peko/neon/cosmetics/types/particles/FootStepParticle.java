@@ -32,8 +32,13 @@ public class FootStepParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.footstep";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.footstep");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

@@ -1,6 +1,7 @@
 package cc.peko.neon.menu.button;
 
 import cc.peko.neon.Neon;
+import cc.peko.neon.NeonConstants;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
 import cc.peko.neon.cosmetics.player.CosmeticPlayer;
@@ -48,7 +49,7 @@ public class CosmeticButton extends Button {
         loreList.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "-------------------------------");
         loreList.addAll(cosmetic.getDescription());
         loreList.add("");
-        loreList.add(player.hasPermission(cosmetic.getPermission()) ? (cosmeticPlayer.getSelectedCosmetics().contains(cosmetic) ? ChatColor.RED + "Click to deselect this Cosmetic!" : ChatColor.GREEN + "Click to select this Cosmetic!") : ChatColor.RED + "You do not have permission for this cosmetic!");
+        loreList.add(cosmetic.hasPermission(player) ? (cosmeticPlayer.getSelectedCosmetics().contains(cosmetic) ? ChatColor.RED + "Click to deselect this Cosmetic!" : ChatColor.GREEN + "Click to select this Cosmetic!") : ChatColor.RED + "You do not have permission for this cosmetic!");
         loreList.add(ChatColor.DARK_GRAY.toString() + ChatColor.STRIKETHROUGH + "-------------------------------");
 
         itemMeta.setDisplayName(cosmetic.getDisplayName());
@@ -64,8 +65,8 @@ public class CosmeticButton extends Button {
     public void clicked(Player player, int slot, ClickType clickType) {
         CosmeticPlayer cosmeticPlayer = Neon.getInstance().getCosmeticHandler().getPlayer(player);
 
-        if(!player.hasPermission(cosmetic.getPermission())) {
-            player.sendMessage(ChatColor.RED + "You do not have permission to this cosmetic.");
+        if(!cosmetic.hasPermission(player)) {
+            player.sendMessage(NeonConstants.getNoPermission());
             return;
         }
 

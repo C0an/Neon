@@ -33,8 +33,8 @@ public class RainbowHelixParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.rainbowhelix";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.rainbowhelix");
     }
 
     @Override
@@ -94,5 +94,10 @@ public class RainbowHelixParticle extends Cosmetic {
     public void remove(Player player) {
         unselectCosmetic(player);
         Bukkit.getScheduler().cancelTask(ringMap.remove(player.getUniqueId()));
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 }

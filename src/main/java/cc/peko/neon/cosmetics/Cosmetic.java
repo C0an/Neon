@@ -2,12 +2,15 @@ package cc.peko.neon.cosmetics;
 
 import cc.peko.neon.Neon;
 import cc.peko.neon.NeonConstants;
+import cc.peko.neon.cosmetics.player.CosmeticPlayer;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +19,7 @@ public abstract class Cosmetic implements Listener {
     public abstract String getName();
     public abstract String getDisplayName();
     public abstract CosmeticType getCosmeticType();
-    public abstract String getPermission();
+    public abstract boolean hasPermission(Player player);
     public abstract List<String> getDescription();
 
     public abstract ItemStack getIcon();
@@ -25,9 +28,12 @@ public abstract class Cosmetic implements Listener {
     public abstract void tick(Player player);
     public abstract void remove(Player player);
 
+    public abstract boolean noPermissionHide();
+
     public void unselectCosmetic(Player player, boolean sendMessage) {
-        if(sendMessage) player.sendMessage(NeonConstants.getUnselectedCosmetic().replace("%displayName%", getDisplayName()));
+        if(sendMessage && player != null) player.sendMessage(NeonConstants.getUnselectedCosmetic().replace("%displayName%", getDisplayName()));
         Neon.getInstance().getCosmeticHandler().getPlayer(player).getSelectedCosmetics().remove(this);
+        
     }
 
     public void unselectCosmetic(Player player) {
@@ -44,4 +50,8 @@ public abstract class Cosmetic implements Listener {
         return playerList;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return obj instanceof Cosmetic && ((Cosmetic)obj).getName().equals(this.getName()) && ((Cosmetic)obj).getCosmeticType() == this.getCosmeticType();
+    }
 }

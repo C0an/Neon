@@ -36,8 +36,13 @@ public class ButterflyWingsParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.butterflywings";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.butterflywings");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override
@@ -98,7 +103,10 @@ public class ButterflyWingsParticle extends Cosmetic {
     @Override
     public void remove(Player player) {
         unselectCosmetic(player);
-        Bukkit.getScheduler().cancelTask(ringMap.remove(player.getUniqueId()));
+        Integer taskID = ringMap.remove(player.getUniqueId());
+        if(taskID != null) {
+            Bukkit.getScheduler().cancelTask(taskID);
+        }
     }
 
     private void rotateAroundAxisX(Vector v, double angle) {

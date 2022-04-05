@@ -30,7 +30,7 @@ public class CosmeticMenu extends Menu {
     @Override
     public Map<Integer, Button> getButtons(Player var1) {
         Map<Integer, Button> buttons = new HashMap<>();
-        AtomicInteger itemPosition = new AtomicInteger(1);
+        AtomicInteger itemPosition = new AtomicInteger(cosmeticType == null ? 1 : (cosmeticType == CosmeticType.ARMOR) ? 0 : 1);
 
         if(getCosmeticType() == null) {
             for (CosmeticType types : CosmeticType.values()) {
@@ -59,7 +59,7 @@ public class CosmeticMenu extends Menu {
                     }
                 });
             }
-        } else getCosmeticType().getCosmetics().forEach(iCosmetic -> buttons.put(itemPosition.getAndAdd(2), new CosmeticButton(cosmeticType, iCosmetic)));
+        } else getCosmeticType().getCosmetics().stream().filter(iCosmetic -> iCosmetic.hasPermission(var1) || !iCosmetic.noPermissionHide()).forEach(iCosmetic -> buttons.put(itemPosition.getAndAdd(cosmeticType == CosmeticType.ARMOR ? 1 : 2), new CosmeticButton(cosmeticType, iCosmetic)));
 
         return buttons;
     }

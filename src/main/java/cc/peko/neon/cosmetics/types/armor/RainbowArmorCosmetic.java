@@ -4,18 +4,14 @@ import cc.peko.neon.Neon;
 import cc.peko.neon.cosmetics.Cosmetic;
 import cc.peko.neon.cosmetics.CosmeticType;
 import net.frozenorb.qlib.util.ItemBuilder;
-import net.minecraft.server.v1_7_R4.PacketPlayOutEntityEquipment;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Color;
 import org.bukkit.Material;
-import org.bukkit.craftbukkit.v1_7_R4.entity.CraftPlayer;
-import org.bukkit.craftbukkit.v1_7_R4.inventory.CraftItemStack;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.LeatherArmorMeta;
 
-import java.awt.*;
 import java.util.Arrays;
 import java.util.List;
 
@@ -81,10 +77,9 @@ public class RainbowArmorCosmetic extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.rainbowarmor";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.rainbowarmor");
     }
-
     @Override
     public List<String> getDescription() {
         return Arrays.asList(ChatColor.WHITE + "Stand out from the crowd and look", ChatColor.WHITE + "snazzy with your rainbow armor!");
@@ -101,6 +96,8 @@ public class RainbowArmorCosmetic extends Cosmetic {
 
     @Override
     public void tick(Player player) {
+        if(player == null || !player.isOnline()) return;
+
         Color color = getColor();
 
         ItemStack helmet = getColorArmor(Material.LEATHER_HELMET, color);
@@ -114,6 +111,11 @@ public class RainbowArmorCosmetic extends Cosmetic {
         player.getInventory().setBoots(boots);
 
         player.updateInventory();
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

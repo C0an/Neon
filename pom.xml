@@ -39,6 +39,7 @@
             <groupId>net.frozenorb</groupId>
             <artifactId>yeslib</artifactId>
             <version>1.0</version>
+            <scope>provided</scope>
         </dependency>
 
         <!-- Misc. Jars -->

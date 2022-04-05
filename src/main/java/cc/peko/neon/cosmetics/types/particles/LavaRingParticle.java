@@ -32,8 +32,13 @@ public class LavaRingParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.lavaring";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.lavaring");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

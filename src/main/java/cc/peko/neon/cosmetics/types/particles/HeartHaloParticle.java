@@ -32,8 +32,13 @@ public class HeartHaloParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.hearthalo";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.hearthalo");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

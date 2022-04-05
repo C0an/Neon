@@ -35,8 +35,13 @@ public class BloodHelixParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.bloodhelix";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.bloodhelix");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override
@@ -56,7 +61,7 @@ public class BloodHelixParticle extends Cosmetic {
             public void run() {
                 if(player == null || !player.isOnline()) this.cancel();
 
-                phi += phi + Math.PI / 8;
+                phi = phi + Math.PI / 8;
                 double x, y, z;
 
                 Location location1 = player.getLocation();

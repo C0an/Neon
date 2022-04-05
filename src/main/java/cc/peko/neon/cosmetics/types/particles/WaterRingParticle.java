@@ -32,8 +32,13 @@ public class WaterRingParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.waterring";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.waterring");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

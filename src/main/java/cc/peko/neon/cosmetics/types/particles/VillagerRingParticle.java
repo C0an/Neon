@@ -32,8 +32,13 @@ public class VillagerRingParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.villagerring";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.villagerring");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

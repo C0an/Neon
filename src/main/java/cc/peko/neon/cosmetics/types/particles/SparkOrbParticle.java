@@ -32,8 +32,13 @@ public class SparkOrbParticle extends Cosmetic {
     }
 
     @Override
-    public String getPermission() {
-        return "neon.cosmetic.sparkorb";
+    public boolean hasPermission(Player player) {
+        return player.hasPermission("neon.cosmetic.sparkorb");
+    }
+
+    @Override
+    public boolean noPermissionHide() {
+        return false;
     }
 
     @Override

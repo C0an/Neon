@@ -35,7 +35,7 @@ public class CosmeticPlayer {
     }
 
     public List<Cosmetic> getAvailableCosmetics() {
-        return Neon.getInstance().getCosmeticHandler().getCosmetics().stream().filter(cosmetic -> getPlayer().hasPermission(cosmetic.getPermission())).collect(Collectors.toList());
+        return Neon.getInstance().getCosmeticHandler().getCosmetics().stream().filter(cosmetic -> cosmetic.hasPermission(getPlayer())).collect(Collectors.toList());
     }
 
     public Cosmetic getCosmeticFromCategory(CosmeticType cosmeticType) {
